@@ -117,8 +117,8 @@ public class MybatisGeneratorBridge {
         context.addTableConfiguration(tableConfig);
         context.setJdbcConnectionConfiguration(jdbcConfig);
         context.setJavaModelGeneratorConfiguration(modelConfig);
-        context.setSqlMapGeneratorConfiguration(mapperConfig);
-        context.setJavaClientGeneratorConfiguration(daoConfig);
+//        context.setSqlMapGeneratorConfiguration(mapperConfig);
+//        context.setJavaClientGeneratorConfiguration(daoConfig);
         // Comment
         CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
         commentConfig.setConfigurationType(OracleVoCommentGenerator.class.getName());
