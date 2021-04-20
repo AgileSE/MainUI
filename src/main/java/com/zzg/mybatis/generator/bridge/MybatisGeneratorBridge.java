@@ -4,6 +4,7 @@ import com.zzg.mybatis.generator.model.DatabaseConfig;
 import com.zzg.mybatis.generator.model.DbType;
 import com.zzg.mybatis.generator.model.GeneratorConfig;
 import com.zzg.mybatis.generator.plugins.DbRemarksCommentGenerator;
+import com.zzg.mybatis.generator.plugins.OracleCommentGenerator;
 import com.zzg.mybatis.generator.util.ConfigHelper;
 import com.zzg.mybatis.generator.util.DbUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +29,7 @@ import java.util.Set;
  */
 public class MybatisGeneratorBridge {
 
-	private static final Logger _LOG = LoggerFactory.getLogger(MybatisGeneratorBridge.class);
+    private static final Logger _LOG = LoggerFactory.getLogger(MybatisGeneratorBridge.class);
 
     private GeneratorConfig generatorConfig;
 
@@ -56,9 +57,9 @@ public class MybatisGeneratorBridge {
         Context context = new Context(ModelType.CONDITIONAL);
         configuration.addContext(context);
         context.addProperty("javaFileEncoding", "UTF-8");
-	    String connectorLibPath = ConfigHelper.findConnectorLibPath(selectedDatabaseConfig.getDbType());
-	    _LOG.info("connectorLibPath: {}", connectorLibPath);
-	    configuration.addClasspathEntry(connectorLibPath);
+        String connectorLibPath = ConfigHelper.findConnectorLibPath(selectedDatabaseConfig.getDbType());
+        _LOG.info("connectorLibPath: {}", connectorLibPath);
+        configuration.addClasspathEntry(connectorLibPath);
         // Table configuration
         TableConfiguration tableConfig = new TableConfiguration(context);
         tableConfig.setTableName(generatorConfig.getTableName());
@@ -70,9 +71,9 @@ public class MybatisGeneratorBridge {
         }
 
         //添加GeneratedKey主键生成
-		if (StringUtils.isNoneEmpty(generatorConfig.getGenerateKeys())) {
-			tableConfig.setGeneratedKey(new GeneratedKey(generatorConfig.getGenerateKeys(), selectedDatabaseConfig.getDbType(), true, null));
-		}
+        if (StringUtils.isNoneEmpty(generatorConfig.getGenerateKeys())) {
+            tableConfig.setGeneratedKey(new GeneratedKey(generatorConfig.getGenerateKeys(), selectedDatabaseConfig.getDbType(), true, null));
+        }
 
         if (generatorConfig.getMapperName() != null) {
             tableConfig.setMapperName(generatorConfig.getMapperName());
@@ -89,7 +90,7 @@ public class MybatisGeneratorBridge {
             });
         }
         if (generatorConfig.isUseActualColumnNames()) {
-			tableConfig.addProperty("useActualColumnNames", "true");
+            tableConfig.addProperty("useActualColumnNames", "true");
         }
         JDBCConnectionConfiguration jdbcConfig = new JDBCConnectionConfiguration();
         jdbcConfig.setDriverClass(DbType.valueOf(selectedDatabaseConfig.getDbType()).getDriverClass());
@@ -119,15 +120,17 @@ public class MybatisGeneratorBridge {
         context.setJavaClientGeneratorConfiguration(daoConfig);
         // Comment
         CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
-        commentConfig.setConfigurationType(DbRemarksCommentGenerator.class.getName());
+        commentConfig.setConfigurationType(OracleCommentGenerator.class.getName());
         if (generatorConfig.isComment()) {
-            commentConfig.addProperty("columnRemarks", "true");
+
         }
+        commentConfig.addProperty("columnRemarks", "true");
+        commentConfig.addProperty("remarksReporting", "true");
         if (generatorConfig.isAnnotation()) {
             commentConfig.addProperty("annotations", "true");
         }
         context.setCommentGeneratorConfiguration(commentConfig);
-        
+
         //实体添加序列化
         PluginConfiguration serializablePluginConfiguration = new PluginConfiguration();
         serializablePluginConfiguration.addProperty("type", "org.mybatis.generator.plugins.SerializablePlugin");
@@ -147,7 +150,7 @@ public class MybatisGeneratorBridge {
         // limit/offset插件
         if (generatorConfig.isOffsetLimit()) {
             if (DbType.MySQL.name().equals(selectedDatabaseConfig.getDbType())
-		            || DbType.PostgreSQL.name().equals(selectedDatabaseConfig.getDbType())) {
+                    || DbType.PostgreSQL.name().equals(selectedDatabaseConfig.getDbType())) {
                 PluginConfiguration pluginConfiguration = new PluginConfiguration();
                 pluginConfiguration.addProperty("type", "com.zzg.mybatis.generator.plugins.MySQLLimitPlugin");
                 pluginConfiguration.setConfigurationType("com.zzg.mybatis.generator.plugins.MySQLLimitPlugin");
@@ -164,7 +167,7 @@ public class MybatisGeneratorBridge {
         myBatisGenerator.generate(progressCallback, contexts, fullyqualifiedTables);
     }
 
-	public void setProgressCallback(ProgressCallback progressCallback) {
+    public void setProgressCallback(ProgressCallback progressCallback) {
         this.progressCallback = progressCallback;
     }
 

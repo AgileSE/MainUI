@@ -24,6 +24,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.internal.util.StringUtility;
 
 import java.util.Properties;
+import java.util.Set;
 
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
@@ -31,7 +32,6 @@ import static org.mybatis.generator.internal.util.StringUtility.isTrue;
  * 此插件使用数据库表中列的注释来生成Java Model中属性的注释
  *
  * @author Owen Zou
- * 
  */
 public class DbRemarksCommentGenerator implements CommentGenerator {
 
@@ -62,6 +62,7 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
      * when it was generated.
      */
     public void addComment(XmlElement xmlElement) {
+        return;
     }
 
     public void addRootComment(XmlElement rootElement) {
@@ -78,79 +79,84 @@ public class DbRemarksCommentGenerator implements CommentGenerator {
     }
 
     public void addClassComment(InnerClass innerClass,
-            IntrospectedTable introspectedTable) {
+                                IntrospectedTable introspectedTable) {
     }
 
     public void addModelClassComment(TopLevelClass topLevelClass,
-                                IntrospectedTable introspectedTable) {
+                                     IntrospectedTable introspectedTable) {
         topLevelClass.addJavaDocLine("/**");
         topLevelClass.addJavaDocLine(" * @author ");
         topLevelClass.addJavaDocLine(" */");
-        if(isAnnotations) {
+        topLevelClass.addJavaDocLine("@ApiModel(value=\"" + "\")");
+        if (isAnnotations) {
             topLevelClass.addAnnotation("@Table(name=\"" + introspectedTable.getFullyQualifiedTableNameAtRuntime() + "\")");
         }
     }
 
     public void addEnumComment(InnerEnum innerEnum,
-            IntrospectedTable introspectedTable) {
+                               IntrospectedTable introspectedTable) {
+        return;
     }
 
-    public void addFieldComment(Field field,
-            IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn) {
-        if (StringUtility.stringHasValue(introspectedColumn.getRemarks())) {
-            field.addJavaDocLine("/**");
-            StringBuilder sb = new StringBuilder();
-            sb.append(" * ");
-            sb.append(introspectedColumn.getRemarks());
-            field.addJavaDocLine(sb.toString());
-            field.addJavaDocLine(" */");
-        }
-
-        if (isAnnotations) {
-            boolean isId = false;
-            for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
-                if (introspectedColumn == column) {
-                    isId = true;
-                    field.addAnnotation("@Id");
-                    field.addAnnotation("@GeneratedValue");
-                    break;
-                }
-            }
-            if (!introspectedColumn.isNullable() && !isId){
-                field.addAnnotation("@NotEmpty");
-            }
-            if (introspectedColumn.isIdentity()) {
-                if (introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement().equals("JDBC")) {
-                    field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
-                } else {
-                    field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");
-                }
-            } else if (introspectedColumn.isSequenceColumn()) {
-                field.addAnnotation("@SequenceGenerator(name=\"\",sequenceName=\"" + introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement() + "\")");
-            }
-        }
+    @Override
+    public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+//        if (StringUtility.stringHasValue(introspectedColumn.getRemarks())) {
+//            field.addJavaDocLine("/**");
+//            StringBuilder sb = new StringBuilder();
+//            sb.append(" * ");
+//            sb.append(introspectedColumn.getRemarks());
+//            field.addJavaDocLine(sb.toString());
+//            field.addJavaDocLine(" */");
+//        }
+//
+//        if (isAnnotations) {
+//            boolean isId = false;
+//            for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
+//                if (introspectedColumn == column) {
+//                    isId = true;
+//                    field.addAnnotation("@Id");
+//                    field.addAnnotation("@GeneratedValue");
+//                    break;
+//                }
+//            }
+//            if (!introspectedColumn.isNullable() && !isId) {
+//                field.addAnnotation("@NotEmpty");
+//            }
+//            if (introspectedColumn.isIdentity()) {
+//                if (introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement().equals("JDBC")) {
+//                    field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
+//                } else {
+//                    field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");
+//                }
+//            } else if (introspectedColumn.isSequenceColumn()) {
+//                field.addAnnotation("@SequenceGenerator(name=\"\",sequenceName=\"" + introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement() + "\")");
+//            }
+//        }
+        String remarks = introspectedColumn.getRemarks();
+        field.addJavaDocLine("/**");
+        field.addJavaDocLine(" * " + remarks);
+        field.addJavaDocLine(" */");
     }
 
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
     }
 
     public void addGeneralMethodComment(Method method,
-            IntrospectedTable introspectedTable) {
+                                        IntrospectedTable introspectedTable) {
     }
 
     public void addGetterComment(Method method,
-            IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn) {
+                                 IntrospectedTable introspectedTable,
+                                 IntrospectedColumn introspectedColumn) {
     }
 
     public void addSetterComment(Method method,
-            IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn) {
+                                 IntrospectedTable introspectedTable,
+                                 IntrospectedColumn introspectedColumn) {
     }
 
     public void addClassComment(InnerClass innerClass,
-            IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
+                                IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
         innerClass.addJavaDocLine("/**"); //$NON-NLS-1$
         innerClass.addJavaDocLine(" */"); //$NON-NLS-1$
     }

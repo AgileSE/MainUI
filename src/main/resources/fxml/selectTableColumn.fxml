@@ -13,6 +13,7 @@
             <TableColumn fx:id="javaTypeColumn" prefWidth="121.0" text="Java Type" />
             <TableColumn fx:id="propertyNameColumn" prefWidth="104.0" text="Property Name" />
             <TableColumn fx:id="typeHandlerColumn" prefWidth="136.0" text="Type Handler" />
+            <TableColumn fx:id="commentsColumn" prefWidth="136.0" text="Comments" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

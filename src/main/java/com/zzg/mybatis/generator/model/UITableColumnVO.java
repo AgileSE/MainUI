@@ -22,6 +22,8 @@ public class UITableColumnVO {
 
     private StringProperty typeHandle = new SimpleStringProperty();
 
+    private StringProperty comments = new SimpleStringProperty();
+
     public String getColumnName() {
         return columnName.get();
     }
@@ -92,5 +94,17 @@ public class UITableColumnVO {
 
     public void setJavaType(String javaType) {
         this.javaType.set(javaType);
+    }
+
+    public String getComments() {
+        return comments.get();
+    }
+
+    public StringProperty commentsProperty() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments.set(comments);
     }
 }

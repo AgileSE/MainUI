@@ -3,6 +3,7 @@ package com.zzg.mybatis.generator.util;
 import com.zzg.mybatis.generator.model.DatabaseConfig;
 import com.zzg.mybatis.generator.model.DbType;
 import com.zzg.mybatis.generator.model.UITableColumnVO;
+import oracle.jdbc.OracleConnection;
 import oracle.jdbc.driver.OracleDriver;
 import org.mybatis.generator.internal.util.ClassloaderUtility;
 import org.slf4j.Logger;
@@ -88,6 +89,7 @@ public class DbUtil {
 		Connection conn = getConnection(dbConfig);
 		try {
 			DatabaseMetaData md = conn.getMetaData();
+			((OracleConnection)conn).setRemarksReporting(true);
 			ResultSet rs = md.getColumns(null, null, tableName, null);
 			List<UITableColumnVO> columns = new ArrayList<>();
 			while (rs.next()) {
@@ -95,6 +97,7 @@ public class DbUtil {
 				String columnName = rs.getString("COLUMN_NAME");
 				columnVO.setColumnName(columnName);
 				columnVO.setJdbcType(rs.getString("TYPE_NAME"));
+				columnVO.setComments(rs.getString("REMARKS"));
 				columns.add(columnVO);
 			}
 			return columns;
