@@ -88,8 +88,8 @@ public class DbUtil {
         _LOG.info("getTableColumns, connection url: {}", url);
 		Connection conn = getConnection(dbConfig);
 		try {
-			DatabaseMetaData md = conn.getMetaData();
 			((OracleConnection)conn).setRemarksReporting(true);
+			DatabaseMetaData md = conn.getMetaData();
 			ResultSet rs = md.getColumns(null, null, tableName, null);
 			List<UITableColumnVO> columns = new ArrayList<>();
 			while (rs.next()) {

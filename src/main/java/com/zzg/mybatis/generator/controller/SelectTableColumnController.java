@@ -35,6 +35,8 @@ public class SelectTableColumnController extends BaseFXController {
     private TableColumn<UITableColumnVO, String> propertyNameColumn;
     @FXML
     private TableColumn<UITableColumnVO, String> typeHandlerColumn;
+    @FXML
+    private TableColumn<UITableColumnVO, String> commentsColumn;
 
     private MainUIController mainUIController;
 
@@ -48,6 +50,7 @@ public class SelectTableColumnController extends BaseFXController {
         jdbcTypeColumn.setCellValueFactory(new PropertyValueFactory<>("jdbcType"));
         propertyNameColumn.setCellValueFactory(new PropertyValueFactory<>("propertyName"));
         typeHandlerColumn.setCellValueFactory(new PropertyValueFactory<>("typeHandler"));
+        commentsColumn.setCellValueFactory(new PropertyValueFactory<>("comments"));
         // Cell Factory that customize how the cell should render
         checkedColumn.setCellFactory(CheckBoxTableCell.forTableColumn(checkedColumn));
         javaTypeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -80,6 +83,7 @@ public class SelectTableColumnController extends BaseFXController {
                     columnOverride.setTypeHandler(item.getTypeHandle());
                     columnOverride.setJavaProperty(item.getPropertyName());
                     columnOverride.setJavaType(item.getJavaType());
+                    columnOverride.addProperty("comments", item.getComments());
                     columnOverrides.add(columnOverride);
                 }
             });
