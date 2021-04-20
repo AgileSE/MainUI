@@ -4,6 +4,7 @@ import com.zzg.mybatis.generator.model.DatabaseConfig;
 import com.zzg.mybatis.generator.model.DbType;
 import com.zzg.mybatis.generator.model.GeneratorConfig;
 import com.zzg.mybatis.generator.plugins.DbRemarksCommentGenerator;
+import com.zzg.mybatis.generator.plugins.LombokPlugin;
 import com.zzg.mybatis.generator.plugins.OracleCommentGenerator;
 import com.zzg.mybatis.generator.plugins.OracleVoCommentGenerator;
 import com.zzg.mybatis.generator.util.ConfigHelper;
@@ -98,7 +99,7 @@ public class MybatisGeneratorBridge {
         jdbcConfig.setConnectionURL(DbUtil.getConnectionUrlWithSchema(selectedDatabaseConfig));
         jdbcConfig.setUserId(selectedDatabaseConfig.getUsername());
         jdbcConfig.setPassword(selectedDatabaseConfig.getPassword());
-        jdbcConfig.addProperty("remarksReporting","true");
+        jdbcConfig.addProperty("remarksReporting", "true");
         // java model
         JavaModelGeneratorConfiguration modelConfig = new JavaModelGeneratorConfiguration();
         modelConfig.setTargetPackage(generatorConfig.getModelPackage());
@@ -117,9 +118,14 @@ public class MybatisGeneratorBridge {
         context.addTableConfiguration(tableConfig);
         context.setJdbcConnectionConfiguration(jdbcConfig);
         context.setJavaModelGeneratorConfiguration(modelConfig);
-//        context.setSqlMapGeneratorConfiguration(mapperConfig);
-//        context.setJavaClientGeneratorConfiguration(daoConfig);
+        // context.setSqlMapGeneratorConfiguration(mapperConfig);
+        // context.setJavaClientGeneratorConfiguration(daoConfig);
         // Comment
+        PluginConfiguration pluginConfigurationForLombok = new PluginConfiguration();
+        pluginConfigurationForLombok.setConfigurationType("com.zzg.mybatis.generator.plugins.LombokPlugin");
+        pluginConfigurationForLombok.addProperty("type", "com.zzg.mybatis.generator.plugins.LombokPlugin");
+        // pluginConfigurationForLombok.addProperty("hasLombok", "false");
+        // context.addPluginConfiguration(pluginConfigurationForLombok);TODO:
         CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
         commentConfig.setConfigurationType(OracleVoCommentGenerator.class.getName());
         if (generatorConfig.isComment()) {
@@ -213,7 +219,7 @@ public class MybatisGeneratorBridge {
         jdbcConfig.setConnectionURL(DbUtil.getConnectionUrlWithSchema(selectedDatabaseConfig));
         jdbcConfig.setUserId(selectedDatabaseConfig.getUsername());
         jdbcConfig.setPassword(selectedDatabaseConfig.getPassword());
-        jdbcConfig.addProperty("remarksReporting","true");
+        jdbcConfig.addProperty("remarksReporting", "true");
         // java model
         JavaModelGeneratorConfiguration modelConfig = new JavaModelGeneratorConfiguration();
         modelConfig.setTargetPackage(generatorConfig.getModelPackage());

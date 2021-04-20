@@ -115,19 +115,6 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      * @return void
      */
     protected void addJavadocTag(JavaElement javaElement, boolean markAsDoNotDelete) {
-        javaElement.addJavaDocLine(" *");
-        StringBuilder sb = new StringBuilder();
-        sb.append(" * ");
-        sb.append(MergeConstants.NEW_ELEMENT_TAG);
-        if (markAsDoNotDelete) {
-            sb.append(" do_not_delete_during_merge");
-        }
-        String s = getDateString();
-        if (s != null) {
-            sb.append(' ');
-            sb.append(s);
-        }
-        javaElement.addJavaDocLine(sb.toString());
     }
 
 
@@ -136,15 +123,6 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addEnumComment(InnerEnum innerEnum, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
-        innerEnum.addJavaDocLine("/**");
-        sb.append(" * ");
-        sb.append(introspectedTable.getFullyQualifiedTable());
-        innerEnum.addJavaDocLine(sb.toString().replace("\n", " "));
-        innerEnum.addJavaDocLine(" */");
     }
 
     /**
@@ -168,12 +146,6 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
-            return;
-        }
-        method.addJavaDocLine("/**");
-        addJavadocTag(method, false);
-        method.addJavaDocLine(" */");
     }
 
 
@@ -189,7 +161,6 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
-
     }
 
     /**
@@ -197,7 +168,8 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addModelClassComment(TopLevelClass arg0, IntrospectedTable arg1) {
-
+        arg0.addImportedType("lombok.Data");
+        arg0.addJavaDocLine(String.format("@ApiModel(name = \"%s\")", arg1.getRemarks()));
     }
 
     /**
