@@ -10,20 +10,15 @@ import org.mybatis.generator.config.PropertyRegistry;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Properties;
 
 import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
-public class OracleCommentGenerator implements CommentGenerator {
+public class OracleVoCommentGenerator implements CommentGenerator {
     /**
      * properties配置文件
      */
     private Properties properties;
-    /**
-     * properties配置文件
-     */
-    private Properties systemPro;
 
     /*
      * 父类时间
@@ -40,12 +35,9 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     private String currentDateStr;
 
-    public OracleCommentGenerator() {
+    public OracleVoCommentGenerator() {
         super();
         properties = new Properties();
-        systemPro = System.getProperties();
-        suppressDate = false;
-        suppressAllComments = false;
         currentDateStr = (new SimpleDateFormat("yyyy-MM-dd")).format(new Date());
     }
 
@@ -59,18 +51,7 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        innerClass.addJavaDocLine("/**");
-        sb.append(" * ");
-        sb.append(introspectedTable.getFullyQualifiedTable());
-        sb.append(" ");
-        sb.append(getDateString());
-        innerClass.addJavaDocLine(sb.toString().replace("\n", " "));
-        innerClass.addJavaDocLine(" */");
+        innerClass.addJavaDocLine(String.format("@ApiModel(name = \"%s\")", introspectedTable.getRemarks()));
     }
 
     /**
@@ -84,21 +65,7 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
-        if (suppressAllComments) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
-        innerClass.addJavaDocLine("/**");
-        sb.append(" * ");
-        sb.append(" * ");
-        sb.append(introspectedTable.getFullyQualifiedTable());
-        innerClass.addJavaDocLine(sb.toString().replace("\n", " "));
-        sb.setLength(0);
-        sb.append(" * @author ");
-        sb.append("lk");
-        sb.append(" ");
-        sb.append(currentDateStr);
-        innerClass.addJavaDocLine(" */");
+        innerClass.addJavaDocLine(String.format("@ApiModel(name = \"%s\")", introspectedTable.getRemarks()));
     }
 
     /**
@@ -185,15 +152,7 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
-        field.addJavaDocLine("/**");
-        sb.append(" * ");
-        sb.append(introspectedTable.getFullyQualifiedTable());
-        field.addJavaDocLine(sb.toString().replace("\n", " "));
-        field.addJavaDocLine(" */");
+        field.addJavaDocLine(String.format("@ApiModelProperty(name = \"%s\")", introspectedTable.getRemarks()));
     }
 
     /**
@@ -201,15 +160,7 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn) {
-        if (suppressAllComments) {
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
-        field.addJavaDocLine("/**");
-        sb.append(" * ");
-        sb.append(introspectedColumn.getRemarks());
-        field.addJavaDocLine(sb.toString().replace("\n", " "));
-        field.addJavaDocLine(" */");
+        field.addJavaDocLine(String.format("@ApiModelProperty(name = \"%s\")", introspectedColumn.getRemarks()));
     }
 
     /**
@@ -231,21 +182,6 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addGetterComment(Method method, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn) {
-        if (suppressAllComments) {
-            return;
-        }
-        method.addJavaDocLine("/**");
-        StringBuilder sb = new StringBuilder();
-        sb.append(" * ");
-        sb.append(introspectedColumn.getRemarks());
-        method.addJavaDocLine(sb.toString().replace("\n", " "));
-        sb.setLength(0);
-        sb.append(" * @return ");
-        sb.append(introspectedColumn.getActualColumnName());
-        sb.append(" ");
-        sb.append(introspectedColumn.getRemarks());
-        method.addJavaDocLine(sb.toString().replace("\n", " "));
-        method.addJavaDocLine(" */");
     }
 
     /**
@@ -269,7 +205,6 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addRootComment(XmlElement arg0) {
-
     }
 
 
@@ -278,22 +213,5 @@ public class OracleCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addSetterComment(Method method, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn) {
-        if (suppressAllComments) {
-            return;
-        }
-        method.addJavaDocLine("/**");
-        StringBuilder sb = new StringBuilder();
-        sb.append(" * ");
-        sb.append(introspectedColumn.getRemarks());
-        method.addJavaDocLine(sb.toString().replace("\n", " "));
-        Parameter parm = method.getParameters().get(0);
-        sb.setLength(0);
-        sb.append(" * @param ");
-        sb.append(parm.getName());
-        sb.append(" ");
-        sb.append(introspectedColumn.getRemarks());
-        method.addJavaDocLine(sb.toString().replace("\n", " "));
-        method.addJavaDocLine(" */");
     }
-
 }

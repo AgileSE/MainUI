@@ -216,6 +216,38 @@ public class MainUIController extends BaseFXController {
     }
 
     @FXML
+    public void generateVoCode(){
+        if (tableName == null) {
+            AlertUtil.showWarnAlert("请先在左侧选择数据库表");
+            return;
+        }
+        String result = validateConfig();
+        if (result != null) {
+            AlertUtil.showErrorAlert(result);
+            return;
+        }
+        GeneratorConfig generatorConfig = getGeneratorConfigFromUI();
+        if (!checkDirs(generatorConfig)) {
+            return;
+        }
+
+        MybatisGeneratorBridge bridge = new MybatisGeneratorBridge();
+        bridge.setGeneratorConfig(generatorConfig);
+        bridge.setDatabaseConfig(selectedDatabaseConfig);
+        bridge.setIgnoredColumns(ignoredColumns);
+        bridge.setColumnOverrides(columnOverrides);
+        UIProgressCallback alert = new UIProgressCallback(Alert.AlertType.INFORMATION);
+        bridge.setProgressCallback(alert);
+        alert.show();
+        try {
+            bridge.generateVo();
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.showErrorAlert(e.getMessage());
+        }
+    }
+
+    @FXML
     public void generateCode() {
         if (tableName == null) {
             AlertUtil.showWarnAlert("请先在左侧选择数据库表");
