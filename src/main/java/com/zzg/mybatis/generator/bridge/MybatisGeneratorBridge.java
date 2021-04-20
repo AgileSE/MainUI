@@ -125,7 +125,7 @@ public class MybatisGeneratorBridge {
         pluginConfigurationForLombok.setConfigurationType("com.zzg.mybatis.generator.plugins.LombokPlugin");
         pluginConfigurationForLombok.addProperty("type", "com.zzg.mybatis.generator.plugins.LombokPlugin");
         // pluginConfigurationForLombok.addProperty("hasLombok", "false");
-        // context.addPluginConfiguration(pluginConfigurationForLombok);TODO:
+        context.addPluginConfiguration(pluginConfigurationForLombok);
         CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
         commentConfig.setConfigurationType(OracleVoCommentGenerator.class.getName());
         if (generatorConfig.isComment()) {
