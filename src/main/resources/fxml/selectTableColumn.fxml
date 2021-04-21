@@ -11,7 +11,7 @@
                    AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                    AnchorPane.topAnchor="100.0">
             <columns>
-                <TableColumn fx:id="checkedColumn" prefWidth="75.0" text="Checked"/>
+                <TableColumn fx:id="checkedColumn" prefWidth="50" minWidth="50" maxWidth="50" text="" />
                 <TableColumn fx:id="columnNameColumn" prefWidth="132.0" text="Column Name"/>
                 <TableColumn fx:id="commentsColumn" prefWidth="170.0" text="Comments"/>
                 <TableColumn fx:id="jdbcTypeColumn" prefWidth="122.0" text="JDBC Type"/>
@@ -31,5 +31,8 @@
         <Text layoutX="12.0" layoutY="64.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0"
               text="2. 如果要定制列的Java数据类型, 字段名或者自动类型转换双击对应的地方编辑即可" wrappingWidth="706.0"/>
         <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. 如果要忽略请取消列的选择"/>
+
+        <CheckBox fx:id="mSelectAll" layoutX="17.0" layoutY="105.0" onAction="#selectAll"
+                  text="" />
     </children>
 </AnchorPane>

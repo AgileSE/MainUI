@@ -3,6 +3,7 @@ package com.zzg.mybatis.generator.controller;
 import com.zzg.mybatis.generator.model.UITableColumnVO;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -37,7 +38,25 @@ public class SelectTableColumnController extends BaseFXController {
     private TableColumn<UITableColumnVO, String> typeHandlerColumn;
     @FXML
     private TableColumn<UITableColumnVO, String> commentsColumn;
+    @FXML
+    private CheckBox mSelectAll;
 
+    /**
+     * 对checkbox勾选去勾选处理
+     */
+    public void selectAll() {
+        ObservableList<UITableColumnVO> items = columnListView.getItems();
+
+        if (mSelectAll.isSelected()) {
+            for (UITableColumnVO deviceInfo : items) {
+                deviceInfo.setChecked(true);
+            }
+        } else {
+            for (UITableColumnVO deviceInfo : items) {
+                deviceInfo.setChecked(false);
+            }
+        }
+    }
     private MainUIController mainUIController;
 
     private String tableName;
@@ -66,6 +85,8 @@ public class SelectTableColumnController extends BaseFXController {
         typeHandlerColumn.setOnEditCommit(event -> {
             event.getTableView().getItems().get(event.getTablePosition().getRow()).setTypeHandle(event.getNewValue());
         });
+        //默认全选
+        mSelectAll.setSelected(true);
     }
 
     @FXML

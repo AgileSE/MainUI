@@ -139,10 +139,10 @@ public class MybatisGeneratorBridge {
         context.setCommentGeneratorConfiguration(commentConfig);
 
         //实体添加序列化
-//        PluginConfiguration serializablePluginConfiguration = new PluginConfiguration();
-//        serializablePluginConfiguration.addProperty("type", "org.mybatis.generator.plugins.SerializablePlugin");
-//        serializablePluginConfiguration.setConfigurationType("org.mybatis.generator.plugins.SerializablePlugin");
-//        context.addPluginConfiguration(serializablePluginConfiguration);
+        PluginConfiguration serializablePluginConfiguration = new PluginConfiguration();
+        serializablePluginConfiguration.addProperty("type", "org.mybatis.generator.plugins.SerializablePlugin");
+        serializablePluginConfiguration.setConfigurationType("org.mybatis.generator.plugins.SerializablePlugin");
+        context.addPluginConfiguration(serializablePluginConfiguration);
         // toString, hashCode, equals插件
         if (generatorConfig.isNeedToStringHashcodeEquals()) {
             PluginConfiguration pluginConfiguration1 = new PluginConfiguration();
