@@ -249,6 +249,12 @@
                                                                   text="使用实际的列名"/>
                                                     </children>
                                                 </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
+                                                    <children>
+                                                        <CheckBox fx:id="xmlWithMapperCheckBox" mnemonicParsing="false"
+                                                                  selected="false" text="XML以及Mapper"/>
+                                                    </children>
+                                                </HBox>
                                             </children>
                                             <padding>
                                                 <Insets left="5.0"/>

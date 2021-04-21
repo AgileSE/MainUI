@@ -238,8 +238,11 @@ public class MybatisGeneratorBridge {
         context.addTableConfiguration(tableConfig);
         context.setJdbcConnectionConfiguration(jdbcConfig);
         context.setJavaModelGeneratorConfiguration(modelConfig);
-        context.setSqlMapGeneratorConfiguration(mapperConfig);
-        context.setJavaClientGeneratorConfiguration(daoConfig);
+        // custom generate xml with dao
+        if (generatorConfig.isXmlWithMapperCheckBoxChecked()) {
+            context.setJavaClientGeneratorConfiguration(daoConfig);
+            context.setSqlMapGeneratorConfiguration(mapperConfig);
+        }
         // Comment
         CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
         commentConfig.setConfigurationType(OracleCommentGenerator.class.getName());
