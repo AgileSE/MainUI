@@ -90,7 +90,7 @@ public class DbUtil {
 		try {
 			((OracleConnection)conn).setRemarksReporting(true);
 			DatabaseMetaData md = conn.getMetaData();
-			ResultSet rs = md.getColumns(null, null, tableName, null);
+			ResultSet rs = md.getColumns(null, null, tableName.toUpperCase(Locale.ROOT), null);
 			List<UITableColumnVO> columns = new ArrayList<>();
 			while (rs.next()) {
 				UITableColumnVO columnVO = new UITableColumnVO();
