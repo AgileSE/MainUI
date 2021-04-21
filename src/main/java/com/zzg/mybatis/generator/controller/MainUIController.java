@@ -42,6 +42,8 @@ public class MainUIController extends BaseFXController {
     @FXML
     private Label configsLabel;
     @FXML
+    private Label reverseLabel;
+    @FXML
     private TextField modelTargetPackage;
     @FXML
     private TextField mapperTargetPackage;
@@ -104,6 +106,14 @@ public class MainUIController extends BaseFXController {
             GeneratorConfigController controller = (GeneratorConfigController) loadFXMLPage("配置", FXMLPage.GENERATOR_CONFIG, false);
             controller.setMainUIController(this);
             controller.showDialogStage();
+        });
+
+        ImageView reverseImage = new ImageView("icons/reverse.png");
+        reverseImage.setFitHeight(25);
+        reverseImage.setFitWidth(25);
+        reverseLabel.setGraphic(reverseImage);
+        reverseLabel.setOnMouseClicked(event -> {
+            //TODO:
         });
 
         leftDBTree.setShowRoot(false);
@@ -196,9 +206,9 @@ public class MainUIController extends BaseFXController {
             for (DatabaseConfig dbConfig : dbConfigs) {
                 TreeItem<String> treeItem = new TreeItem<>();
                 treeItem.setValue(dbConfig.getName());
-                ImageView dbImage = new ImageView("icons/computer.png");
-                dbImage.setFitHeight(15);
-                dbImage.setFitWidth(15);
+                ImageView dbImage = new ImageView("icons/database.png");
+                dbImage.setFitHeight(17);
+                dbImage.setFitWidth(17);
                 dbImage.setUserData(dbConfig);
                 treeItem.setGraphic(dbImage);
                 rootTreeItem.getChildren().add(treeItem);
