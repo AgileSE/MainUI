@@ -14,7 +14,7 @@
     <top>
         <VBox>
             <children>
-                <ToolBar minHeight="70.0" prefHeight="81.0" prefWidth="918.0" BorderPane.alignment="CENTER">
+                <ToolBar minHeight="50.0" prefHeight="50.0" prefWidth="918.0" BorderPane.alignment="CENTER">
                     <items>
                         <Label fx:id="connectionLabel" contentDisplay="TOP" text="数据库连接">
                             <cursor>
@@ -32,6 +32,11 @@
                                 <Insets right="10.0"/>
                             </padding>
                         </Label>
+                        <Label fx:id="batchConvertLabel" contentDisplay="TOP" text="批量转换">
+                            <padding>
+                                <Insets right="10.0"/>
+                            </padding>
+                        </Label>
                     </items>
                 </ToolBar>
             </children>
@@ -40,7 +45,7 @@
     <center>
         <SplitPane dividerPositions="0.15">
             <items>
-                <AnchorPane maxWidth="500.0" minWidth="100.0" prefHeight="618.0" prefWidth="200.0">
+                <AnchorPane maxWidth="500.0" minWidth="250.0" prefHeight="618.0" prefWidth="250.0">
                     <children>
                         <TreeView fx:id="leftDBTree" layoutX="-14.0" maxWidth="0.0" prefHeight="545.0" prefWidth="126.0"
                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"

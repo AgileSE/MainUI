@@ -92,8 +92,8 @@ public class MainUIController extends BaseFXController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ImageView dbImage = new ImageView("icons/computer.png");
-        dbImage.setFitHeight(40);
-        dbImage.setFitWidth(40);
+        dbImage.setFitHeight(25);
+        dbImage.setFitWidth(25);
         connectionLabel.setGraphic(dbImage);
         connectionLabel.setOnMouseClicked(event -> {
             DbConnectionController controller = (DbConnectionController) loadFXMLPage("新建数据库连接", FXMLPage.NEW_CONNECTION, false);
@@ -101,8 +101,8 @@ public class MainUIController extends BaseFXController {
             controller.showDialogStage();
         });
         ImageView configImage = new ImageView("icons/config-list.png");
-        configImage.setFitHeight(40);
-        configImage.setFitWidth(40);
+        configImage.setFitHeight(25);
+        configImage.setFitWidth(25);
         configsLabel.setGraphic(configImage);
         configsLabel.setOnMouseClicked(event -> {
             GeneratorConfigController controller = (GeneratorConfigController) loadFXMLPage("配置", FXMLPage.GENERATOR_CONFIG, false);
@@ -157,8 +157,8 @@ public class MainUIController extends BaseFXController {
                                 for (String tableName : tables) {
                                     TreeItem<String> newTreeItem = new TreeItem<>();
                                     ImageView imageView = new ImageView("icons/table.png");
-                                    imageView.setFitHeight(16);
-                                    imageView.setFitWidth(16);
+                                    imageView.setFitHeight(15);
+                                    imageView.setFitWidth(15);
                                     newTreeItem.setGraphic(imageView);
                                     newTreeItem.setValue(tableName);
                                     children.add(newTreeItem);
@@ -194,8 +194,8 @@ public class MainUIController extends BaseFXController {
                 TreeItem<String> treeItem = new TreeItem<>();
                 treeItem.setValue(dbConfig.getName());
                 ImageView dbImage = new ImageView("icons/computer.png");
-                dbImage.setFitHeight(16);
-                dbImage.setFitWidth(16);
+                dbImage.setFitHeight(15);
+                dbImage.setFitWidth(15);
                 dbImage.setUserData(dbConfig);
                 treeItem.setGraphic(dbImage);
                 rootTreeItem.getChildren().add(treeItem);
