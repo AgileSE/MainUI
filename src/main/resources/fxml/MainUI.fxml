@@ -37,6 +37,16 @@
                                 <Insets right="10.0"/>
                             </padding>
                         </Label>
+                        <Label fx:id="voConvertLabel" contentDisplay="LEFT" text="视图对象">
+                            <padding>
+                                <Insets right="10.0"/>
+                            </padding>
+                        </Label>
+                        <Label fx:id="domainConvertLabel" contentDisplay="LEFT" text="生成代码">
+                            <padding>
+                                <Insets right="10.0"/>
+                            </padding>
+                        </Label>
                     </items>
                 </ToolBar>
             </children>

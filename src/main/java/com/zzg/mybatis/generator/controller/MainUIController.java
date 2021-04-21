@@ -44,6 +44,10 @@ public class MainUIController extends BaseFXController {
     @FXML
     private Label reverseLabel;
     @FXML
+    private Label voConvertLabel;
+    @FXML
+    private Label domainConvertLabel;
+    @FXML
     private TextField modelTargetPackage;
     @FXML
     private TextField mapperTargetPackage;
@@ -116,6 +120,22 @@ public class MainUIController extends BaseFXController {
         reverseImage.setFitWidth(25);
         reverseLabel.setGraphic(reverseImage);
         reverseLabel.setOnMouseClicked(event -> {
+            //TODO:
+        });
+
+        ImageView voImage = new ImageView("icons/vo.png");
+        voImage.setFitHeight(25);
+        voImage.setFitWidth(25);
+        voConvertLabel.setGraphic(voImage);
+        voConvertLabel.setOnMouseClicked(event -> {
+            //TODO:
+        });
+
+        ImageView domainImage = new ImageView("icons/domain.png");
+        domainImage.setFitHeight(25);
+        domainImage.setFitWidth(25);
+        domainConvertLabel.setGraphic(domainImage);
+        domainConvertLabel.setOnMouseClicked(event -> {
             //TODO:
         });
 
