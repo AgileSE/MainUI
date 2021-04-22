@@ -13,6 +13,8 @@ import com.zzg.mybatis.generator.view.UIProgressCallback;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import javafx.scene.image.ImageView;
@@ -123,6 +125,10 @@ public class MainUIController extends BaseFXController {
         reverseLabel.setGraphic(reverseImage);
         reverseLabel.setOnMouseClicked(event -> {
             //TODO:
+            AddOrEditConfigController controller = (AddOrEditConfigController) loadFXMLPage("配置", FXMLPage.GENERATOR_UPDATE_CONFIG, false);
+            controller.setMainUIController(this);
+            controller.setConfig(null);
+            controller.showDialogStage();
         });
 
         ImageView voImage = new ImageView("icons/vo.png");

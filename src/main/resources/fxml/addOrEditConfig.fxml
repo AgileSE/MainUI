@@ -1,14 +1,129 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.GridPane?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fxml.AddOrEditConfigController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import java.lang.String?>
+<GridPane fx:controller="com.zzg.mybatis.generator.controller.AddOrEditConfigController"
+          xmlns:fx="http://javafx.com/fxml" alignment="center"
+          hgap="10" vgap="10">
+    <padding>
+        <Insets top="10" right="40" bottom="40" left="40"/>
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints maxWidth="Infinity" halignment="RIGHT">
+        </ColumnConstraints>
+        <ColumnConstraints minWidth="200" prefWidth="200"
+                           maxWidth="Infinity" hgrow="ALWAYS">
+        </ColumnConstraints>
+        <ColumnConstraints maxWidth="Infinity" halignment="RIGHT">
+        </ColumnConstraints>
+        <ColumnConstraints minWidth="200" prefWidth="200"
+                           maxWidth="Infinity" hgrow="ALWAYS">
+        </ColumnConstraints>
+        <ColumnConstraints maxWidth="Infinity" halignment="RIGHT">
+        </ColumnConstraints>
+    </columnConstraints>
+    <Label text="项目所在目录" GridPane.columnIndex="0"
+           GridPane.rowIndex="1">
+    </Label>
+    <TextField fx:id="txtProjectDirectory" prefHeight="27"
+               GridPane.columnSpan="3"
+               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Button mnemonicParsing="false" onAction="#chooseProjectFolder"
+            GridPane.columnIndex="4"
+            GridPane.rowIndex="1"
+            text="选择">
+        <styleClass>
+            <String fx:value="btn"/>
+            <String fx:value="btn-default"/>
+        </styleClass>
+    </Button>
+    <Label text="实体类包名" GridPane.columnIndex="0"
+           GridPane.rowIndex="2">
+    </Label>
+    <TextField fx:id="txtClassPackage" prefHeight="27"
+               GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <Label text="接口包名" GridPane.columnIndex="0"
+           GridPane.rowIndex="3">
+    </Label>
+    <TextField fx:id="txtInterfacePackage" prefHeight="27"
+               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    <Label text="映射XML存放目录" GridPane.columnIndex="0"
+           GridPane.rowIndex="4">
+    </Label>
+    <TextField fx:id="txtXmlDirectory" prefHeight="27"
+               GridPane.columnIndex="1" GridPane.rowIndex="4"
+               GridPane.columnSpan="3"/>
+    <Label text="存放目录 " GridPane.columnIndex="2"
+           GridPane.rowIndex="2">
+    </Label>
+    <TextField fx:id="txtClassDirectory" prefHeight="27"
+               GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+    <Label text="存放目录 " GridPane.columnIndex="2"
+           GridPane.rowIndex="3">
+    </Label>
+    <TextField fx:id="txtInterfaceDirectory" prefHeight="27"
+               GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+    <Label text="其它配置" GridPane.columnIndex="0"
+           GridPane.rowIndex="5">
+    </Label>
+    <VBox prefHeight="53.0" spacing="10.0"
+          GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="5">
+        <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1"
+                  GridPane.columnSpan="3" GridPane.rowIndex="8">
+                <children>
+                    <CheckBox fx:id="offsetLimitCheckBox" minWidth="100.0"
+                              mnemonicParsing="false" selected="false" text="分页"
+                              GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                    <CheckBox fx:id="commentCheckBox" mnemonicParsing="false"
+                              selected="false" text="生成实体域注释(来自表注释)"/>
+                </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+                <children>
+                    <CheckBox fx:id="needToStringHashcodeEquals"
+                              mnemonicParsing="false" selected="false"
+                              text="生成toString/hashCode/equals方法"/>
+                </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
+                <children>
+                    <CheckBox fx:id="annotationCheckBox" mnemonicParsing="false"
+                              selected="false" text="生成JPA注解"/>
+                    <CheckBox fx:id="useActualColumnNamesCheckbox"
+                              mnemonicParsing="false" selected="true"
+                              text="使用实际的列名"/>
+                </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
+                <children>
+                    <CheckBox fx:id="xmlWithMapperCheckBox" mnemonicParsing="false"
+                              selected="false" text="XML以及Mapper"/>
+                </children>
+            </HBox>
+        </children>
+        <padding>
+            <Insets left="5.0"/>
+        </padding>
+    </VBox>
+    <Button fx:id="submitButton" text="保存配置"
+            prefWidth="100" prefHeight="27" defaultButton="true"
+            GridPane.columnIndex="3" GridPane.rowIndex="8"
+            GridPane.columnSpan="1" GridPane.rowSpan="1"
+            GridPane.halignment="RIGHT"
+            onAction="#handleSubmitButtonAction">
+        <GridPane.margin>
+            <Insets top="20" right="0" bottom="20" left="0"></Insets>
+        </GridPane.margin>
+    </Button>
+</GridPane>
