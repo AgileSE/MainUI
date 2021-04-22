@@ -130,7 +130,7 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
-        field.addJavaDocLine(String.format("@ApiModelProperty(name = \"%s\")", introspectedTable.getRemarks()));
+        field.addJavaDocLine(String.format("@ApiModelProperty(value = \"%s\")", introspectedTable.getRemarks()));
     }
 
     /**
@@ -138,7 +138,7 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn) {
-        field.addJavaDocLine(String.format("@ApiModelProperty(name = \"%s\")", introspectedColumn.getRemarks()));
+        field.addJavaDocLine(String.format("@ApiModelProperty(value = \"%s\")", introspectedColumn.getRemarks()));
     }
 
     /**
