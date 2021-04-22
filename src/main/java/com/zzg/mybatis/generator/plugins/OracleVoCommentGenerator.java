@@ -169,7 +169,7 @@ public class OracleVoCommentGenerator implements CommentGenerator {
     @Override
     public void addModelClassComment(TopLevelClass arg0, IntrospectedTable arg1) {
         arg0.addImportedType("lombok.Data");
-        arg0.addJavaDocLine("@Data()");
+        arg0.addJavaDocLine("@Data");
         arg0.addJavaDocLine(String.format("@ApiModel(name = \"%s\")", arg1.getRemarks()));
     }
 

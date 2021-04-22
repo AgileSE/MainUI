@@ -100,7 +100,7 @@
                                         <RowConstraints maxHeight="99.0" minHeight="11.0" prefHeight="95.0"/>
                                     </rowConstraints>
                                     <children>
-                                        <Label text="表名"/>
+                                        <Label text="数据库表名"/>
                                         <TextField fx:id="tableNameField" disable="true" editable="false"
                                                    prefHeight="27.0" prefWidth="156.0" promptText="person"
                                                    GridPane.columnIndex="1">
