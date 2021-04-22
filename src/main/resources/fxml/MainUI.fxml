@@ -274,18 +274,6 @@
                                               spacing="10.0" GridPane.columnIndex="1" GridPane.columnSpan="3"
                                               GridPane.rowIndex="8">
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#generateVoCode" text="Vo生成">
-                                                    <styleClass>
-                                                        <String fx:value="btn-success"/>
-                                                        <String fx:value="btn"/>
-                                                    </styleClass>
-                                                </Button>
-                                                <Button mnemonicParsing="false" onAction="#generateCode" text="代码生成">
-                                                    <styleClass>
-                                                        <String fx:value="btn-success"/>
-                                                        <String fx:value="btn"/>
-                                                    </styleClass>
-                                                </Button>
                                                 <Button mnemonicParsing="false" onAction="#saveGeneratorConfig"
                                                         text="保存配置">
                                                     <styleClass>

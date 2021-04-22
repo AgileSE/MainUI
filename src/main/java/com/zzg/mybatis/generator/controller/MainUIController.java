@@ -1,5 +1,6 @@
 package com.zzg.mybatis.generator.controller;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import com.zzg.mybatis.generator.bridge.MybatisGeneratorBridge;
 import com.zzg.mybatis.generator.model.DatabaseConfig;
 import com.zzg.mybatis.generator.model.GeneratorConfig;
@@ -33,7 +34,8 @@ import java.sql.SQLRecoverableException;
 import java.util.*;
 
 public class MainUIController extends BaseFXController {
-
+    private static final String VO_GENERATE = "_vo_generate_";
+    private static final String OTHER_GENERATE = "_other_generate_";
     private static final Logger _LOG = LoggerFactory.getLogger(MainUIController.class);
     private static final String FOLDER_NO_EXIST = "部分目录不存在，是否创建";
     // tool bar buttons
@@ -128,7 +130,7 @@ public class MainUIController extends BaseFXController {
         voImage.setFitWidth(25);
         voConvertLabel.setGraphic(voImage);
         voConvertLabel.setOnMouseClicked(event -> {
-            //TODO:
+            this.generateCodeCommon(VO_GENERATE);
         });
 
         ImageView domainImage = new ImageView("icons/domain.png");
@@ -136,7 +138,7 @@ public class MainUIController extends BaseFXController {
         domainImage.setFitWidth(25);
         domainConvertLabel.setGraphic(domainImage);
         domainConvertLabel.setOnMouseClicked(event -> {
-            //TODO:
+            this.generateCodeCommon(OTHER_GENERATE);
         });
 
         leftDBTree.setShowRoot(false);
@@ -251,9 +253,8 @@ public class MainUIController extends BaseFXController {
         }
     }
 
-    @FXML
-    public void generateVoCode() {
-        if (tableName == null) {
+    private void generateCodeCommon(String currentOperation) {
+        if (tableName.equals(null) || tableName.equals("")) {
             AlertUtil.showWarnAlert("请先在左侧选择数据库表");
             return;
         }
@@ -276,39 +277,14 @@ public class MainUIController extends BaseFXController {
         bridge.setProgressCallback(alert);
         alert.show();
         try {
-            bridge.generateVo();
-        } catch (Exception e) {
-            e.printStackTrace();
-            AlertUtil.showErrorAlert(e.getMessage());
-        }
-    }
-
-    @FXML
-    public void generateCode() {
-        if (tableName == null) {
-            AlertUtil.showWarnAlert("请先在左侧选择数据库表");
-            return;
-        }
-        String result = validateConfig();
-        if (result != null) {
-            AlertUtil.showErrorAlert(result);
-            return;
-        }
-        GeneratorConfig generatorConfig = getGeneratorConfigFromUI();
-        if (!checkDirs(generatorConfig)) {
-            return;
-        }
-
-        MybatisGeneratorBridge bridge = new MybatisGeneratorBridge();
-        bridge.setGeneratorConfig(generatorConfig);
-        bridge.setDatabaseConfig(selectedDatabaseConfig);
-        bridge.setIgnoredColumns(ignoredColumns);
-        bridge.setColumnOverrides(columnOverrides);
-        UIProgressCallback alert = new UIProgressCallback(Alert.AlertType.INFORMATION);
-        bridge.setProgressCallback(alert);
-        alert.show();
-        try {
-            bridge.generate();
+            switch (currentOperation) {
+                case VO_GENERATE:
+                    bridge.generateVo();
+                    break;
+                case OTHER_GENERATE:
+                    bridge.generate();
+                    break;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             AlertUtil.showErrorAlert(e.getMessage());
