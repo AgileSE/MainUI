@@ -43,49 +43,54 @@ public class OracleVoCommentGenerator implements CommentGenerator {
 
     /**
      * Description (Java类的类注释)
-     * @author lk
-     * @date 2019/12/19 23:05
-     * @param innerClass :
+     *
+     * @param innerClass        :
      * @param introspectedTable :
      * @return void
+     * @author lk
+     * @date 2019/12/19 23:05
      */
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {
-        innerClass.addJavaDocLine(String.format("@ApiModel(name = \"%s\")", introspectedTable.getRemarks()));
+        innerClass.addJavaDocLine(String.format("@ApiModel(value = \"%s\")", introspectedTable.getRemarks()));
     }
 
     /**
      * Description (为类添加注释)
-     * @author lk
-     * @date 2019/12/19 23:05
-     * @param innerClass :
+     *
+     * @param innerClass        :
      * @param introspectedTable :
      * @param markAsDoNotDelete :
      * @return void
+     * @author lk
+     * @date 2019/12/19 23:05
      */
     @Override
     public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
-        innerClass.addJavaDocLine(String.format("@ApiModel(name = \"%s\")", introspectedTable.getRemarks()));
+        innerClass.addJavaDocLine(String.format("@ApiModel(value = \"%s\")", introspectedTable.getRemarks()));
     }
 
     /**
      * Description (Mybatis的Mapper.xml文件里面的注释)
-     * @author lk
-     * @date 2019/12/19 23:05
+     *
      * @param xmlElement :
      * @return void
+     * @author lk
+     * @date 2019/12/19 23:05
      */
     @Override
     public void addComment(XmlElement xmlElement) {
 
     }
+
     /**
      * Description (从该配置中的任何属性添加此实例的属性CommentGenerator配置。
-     *                   这个方法将在任何其他方法之前被调用。)
-     * @author lk
-     * @date 2019/12/19 23:04
+     * 这个方法将在任何其他方法之前被调用。)
+     *
      * @param properties :
      * @return void
+     * @author lk
+     * @date 2019/12/19 23:04
      */
     @Override
     public void addConfigurationProperties(Properties properties) {
@@ -93,11 +98,13 @@ public class OracleVoCommentGenerator implements CommentGenerator {
         suppressDate = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_DATE));
         suppressAllComments = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_ALL_COMMENTS));
     }
+
     /**
      * Description (此方法返回格式化的日期字符串以包含在Javadoc标记中和XML注释。 如果您不想要日期，则可以返回null在这些文档元素中。)
+     *
+     * @return java.lang.String
      * @author lk
      * @date 2019/12/19 23:06
-     * @return java.lang.String
      */
     protected String getDateString() {
         String result = null;
@@ -106,13 +113,15 @@ public class OracleVoCommentGenerator implements CommentGenerator {
         }
         return result;
     }
+
     /**
      * Description (此方法为其添加了自定义javadoc标签。)
-     * @author lk
-     * @date 2019/12/19 23:06
-     * @param javaElement :
+     *
+     * @param javaElement       :
      * @param markAsDoNotDelete :
      * @return void
+     * @author lk
+     * @date 2019/12/19 23:06
      */
     protected void addJavadocTag(JavaElement javaElement, boolean markAsDoNotDelete) {
     }
@@ -130,15 +139,15 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
-        field.addJavaDocLine(String.format("@ApiModelProperty(value = \"%s\")", introspectedTable.getRemarks()));
+        field.addJavaDocLine(String.format("@ApiModelProperty(%s value = \"%s\")",field.getName().equals("serialVersionUID") ? "hidden = true," : "", introspectedTable.getRemarks()));
     }
 
     /**
      * 为字段添加注释
      */
     @Override
-    public void addFieldComment(Field field, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn) {
-        field.addJavaDocLine(String.format("@ApiModelProperty(value = \"%s\")", introspectedColumn.getRemarks()));
+    public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+        field.addJavaDocLine(String.format("@ApiModelProperty(%s value = \"%s\")", field.getName().equals("serialVersionUID") ? "hidden = true," : "", introspectedColumn.getRemarks()));
     }
 
     /**
@@ -153,7 +162,7 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      * 给getter方法加注释
      */
     @Override
-    public void addGetterComment(Method method, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn) {
+    public void addGetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
     }
 
     /**
@@ -170,7 +179,7 @@ public class OracleVoCommentGenerator implements CommentGenerator {
     public void addModelClassComment(TopLevelClass arg0, IntrospectedTable arg1) {
         arg0.addImportedType("lombok.Data");
         arg0.addJavaDocLine("@Data");
-        arg0.addJavaDocLine(String.format("@ApiModel(name = \"%s\")", arg1.getRemarks()));
+        arg0.addJavaDocLine(String.format("@ApiModel(value = \"%s\")", arg1.getRemarks()));
     }
 
     /**
@@ -185,6 +194,6 @@ public class OracleVoCommentGenerator implements CommentGenerator {
      * 给setter方法加注释
      */
     @Override
-    public void addSetterComment(Method method, IntrospectedTable introspectedTable,IntrospectedColumn introspectedColumn) {
+    public void addSetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
     }
 }
