@@ -4,6 +4,7 @@ import com.zzg.mybatis.generator.model.GeneratorConfig;
 import com.zzg.mybatis.generator.util.ConfigHelper;
 import com.zzg.mybatis.generator.view.AlertUtil;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,13 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-/**
- * 管理GeneratorConfig的Controller
- * <p>
- * Created by Owen on 8/21/16.
- */
 public class GeneratorConfigController extends BaseFXController {
-
     private static final Logger _LOG = LoggerFactory.getLogger(GeneratorConfigController.class);
 
     @FXML
@@ -42,6 +37,10 @@ public class GeneratorConfigController extends BaseFXController {
         if (selectedFolder != null) {
             this.txtProjectDirectory.setText(selectedFolder.getAbsolutePath());
         }
+    }
+
+    @FXML
+    public void handleSubmitButtonAction(ActionEvent actionEvent) {
     }
 
     private MainUIController mainUIController;
@@ -63,15 +62,27 @@ public class GeneratorConfigController extends BaseFXController {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        Button btn1 = new Button("应用");
+                        Button btn0 = new Button("应用");
+                        Button btn1 = new Button("编辑");
                         Button btn2 = new Button("删除");
                         HBox hBox = new HBox();
                         hBox.setSpacing(10);
+                        hBox.getChildren().add(btn0);
                         hBox.getChildren().add(btn1);
                         hBox.getChildren().add(btn2);
-                        btn1.setOnAction(event -> {
+                        btn0.setOnAction(event -> {
                             try {
                                 // 应用配置
+                                GeneratorConfig generatorConfig = ConfigHelper.loadGeneratorConfig(item.toString());
+                                mainUIController.setGeneratorConfigIntoUI(generatorConfig);
+                                controller.closeDialogStage();
+                            } catch (Exception e) {
+                                AlertUtil.showErrorAlert(e.getMessage());
+                            }
+                        });
+                        btn1.setOnAction(event -> {
+                            try {
+                                // 编辑配置
                                 GeneratorConfig generatorConfig = ConfigHelper.loadGeneratorConfig(item.toString());
                                 mainUIController.setGeneratorConfigIntoUI(generatorConfig);
                                 controller.closeDialogStage();
@@ -109,5 +120,4 @@ public class GeneratorConfigController extends BaseFXController {
     void setMainUIController(MainUIController mainUIController) {
         this.mainUIController = mainUIController;
     }
-
 }

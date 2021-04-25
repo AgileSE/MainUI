@@ -1,24 +1,38 @@
 * {
 	-fx-font-size: 12px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0px;
 }
 
 .button {
 	-fx-font-size: 14px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0px;
 }
 
 .tool-bar .button {
     -fx-border-width: 0px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0px;
 }
 
 .btn {
     -fx-border-width: 1px;
     -fx-border-color: transparent;
-    -fx-border-radius: 4px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0px;
+}
+
+.text-field{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0px;
 }
 
 .btn-primary {
 	-fx-background-color: #378bfa;
 	-fx-text-fill: white;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0px;
 }
 
 .btn-primary:hover {
@@ -29,6 +43,8 @@
     -fx-text-fill: #333;
     -fx-background-color: #fff;
     -fx-border-color: #ccc;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0px;
 }
 
 .btn-default:hover {

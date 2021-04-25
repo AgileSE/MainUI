@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 <?import java.lang.String?>
-
-<GridPane alignment="center" hgap="10" prefHeight="372.0" prefWidth="897.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zzg.mybatis.generator.controller.GeneratorConfigController">
+<GridPane alignment="center" hgap="10" prefHeight="372.0" prefWidth="897.0" vgap="10" xmlns="http://javafx.com/javafx/8"
+          xmlns:fx="http://javafx.com/fxml/1"
+          stylesheets="@../style.css"
+          fx:controller="com.zzg.mybatis.generator.controller.GeneratorConfigController">
     <padding>
-        <Insets bottom="40" left="5" right="0" top="10" />
+        <Insets bottom="40" left="5" right="0" top="10"/>
     </padding>
     <columnConstraints>
         <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS">
@@ -24,102 +27,123 @@
         </ColumnConstraints>
         <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS">
         </ColumnConstraints>
-        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="ALWAYS"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints vgrow="ALWAYS"/>
     </rowConstraints>
     <children>
-        <TableView fx:id="configTable" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="7">
+        <TableView fx:id="configTable" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="9">
             <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="配置名称" />
-                <TableColumn fx:id="opsColumn" editable="false" prefWidth="75.0" sortable="false" text="操作" />
+                <TableColumn fx:id="nameColumn" prefWidth="75.0" text="配置名称"/>
+                <TableColumn fx:id="opsColumn" editable="false" prefWidth="75.0" sortable="false" text="操作"/>
             </columns>
             <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
             </columnResizePolicy>
         </TableView>
         <Label text="项目目录" GridPane.columnIndex="1" GridPane.rowIndex="1">
         </Label>
-        <TextField fx:id="txtProjectDirectory" prefHeight="27" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1" />
-        <Button mnemonicParsing="false" onAction="#chooseProjectFolder" text="选择" GridPane.columnIndex="6" GridPane.rowIndex="1">
+        <TextField fx:id="txtProjectDirectory" prefHeight="27" GridPane.columnIndex="2" GridPane.columnSpan="3"
+                   style="-fx-background-radius: 0;"
+                   GridPane.rowIndex="1"/>
+        <Button mnemonicParsing="false" onAction="#chooseProjectFolder" text="选择" GridPane.columnIndex="6"
+                style="-fx-background-color: #3A84C3; -fx-background-radius: 0;"
+                textFill="WHITE"
+                GridPane.rowIndex="1">
             <styleClass>
-                <String fx:value="btn" />
-                <String fx:value="btn-default" />
+                <String fx:value="btn"/>
+                <String fx:value="btn-default"/>
             </styleClass>
         </Button>
         <Label text="实体包名" GridPane.columnIndex="1" GridPane.rowIndex="2">
         </Label>
-        <TextField fx:id="txtClassPackage" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <TextField fx:id="txtClassPackage" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
         <Label text="存放目录 " GridPane.columnIndex="3" GridPane.rowIndex="2">
         </Label>
-        <TextField fx:id="txtClassDirectory" prefHeight="27" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+        <TextField fx:id="txtClassDirectory" prefHeight="27" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
         <Label text="接口包名" GridPane.columnIndex="1" GridPane.rowIndex="3">
         </Label>
-        <TextField fx:id="txtInterfacePackage" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <TextField fx:id="txtInterfacePackage" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
         <Label text="存放目录 " GridPane.columnIndex="3" GridPane.rowIndex="3">
         </Label>
-        <TextField fx:id="txtInterfaceDirectory" prefHeight="27" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+        <TextField fx:id="txtInterfaceDirectory" prefHeight="27" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
         <Label text="映射XML包名" GridPane.columnIndex="1" GridPane.rowIndex="4">
         </Label>
-        <TextField fx:id="txtXmlPackage" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <TextField fx:id="txtXmlPackage" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
         <Label text="映射XML目录" GridPane.columnIndex="3" GridPane.rowIndex="4">
         </Label>
-        <TextField fx:id="txtXmlDirectory" prefHeight="27" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+        <TextField fx:id="txtXmlDirectory" prefHeight="27" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
         <Label text="主键统一命名" GridPane.columnIndex="1" GridPane.rowIndex="5">
         </Label>
-        <TextField fx:id="txtPrimaryKey" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <TextField fx:id="txtPrimaryKey" prefHeight="27" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
         <Label text="其它配置" GridPane.columnIndex="1" GridPane.rowIndex="6">
         </Label>
-        <!--        <VBox prefHeight="53.0" spacing="10.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6">-->
-        <!--            <children>-->
-        <!--                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="2" GridPane.columnSpan="3"-->
-        <!--                      GridPane.rowIndex="8">-->
-        <!--                    <children>-->
-        <!--                        <CheckBox fx:id="offsetLimitCheckBox" minWidth="100.0" mnemonicParsing="false" selected="false"-->
-        <!--                                  text="分页" GridPane.columnIndex="2" GridPane.rowIndex="8"/>-->
-        <!--                        <CheckBox fx:id="commentCheckBox" mnemonicParsing="false" selected="false"-->
-        <!--                                  text="生成实体域注释(来自表注释)"/>-->
-        <!--                    </children>-->
-        <!--                </HBox>-->
-        <!--                <HBox prefHeight="100.0" prefWidth="200.0">-->
-        <!--                    <children>-->
-        <!--                        <CheckBox fx:id="needToStringHashcodeEquals" mnemonicParsing="false" selected="false"-->
-        <!--                                  text="生成toString/hashCode/equals方法"/>-->
-        <!--                    </children>-->
-        <!--                </HBox>-->
-        <!--                <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">-->
-        <!--                    <children>-->
-        <!--                        <CheckBox fx:id="annotationCheckBox" mnemonicParsing="false" selected="false" text="生成JPA注解"/>-->
-        <!--                        <CheckBox fx:id="useActualColumnNamesCheckbox" mnemonicParsing="false" selected="true"-->
-        <!--                                  text="使用实际的列名"/>-->
-        <!--                    </children>-->
-        <!--                </HBox>-->
-        <!--                <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">-->
-        <!--                    <children>-->
-        <!--                        <CheckBox mnemonicParsing="false" selected="false" text="XML以及Mapper"-->
-        <!--                                  fx:id="xmlWithMapperCheckBox"/>-->
-        <!--                    </children>-->
-        <!--                </HBox>-->
-        <!--            </children>-->
-        <!--            <padding>-->
-        <!--                <Insets left="5.0"/>-->
-        <!--            </padding>-->
-        <!--        </VBox>-->
-        <!--        <Button fx:id="submitButton" defaultButton="true" onAction="#handleSubmitButtonAction" prefHeight="27"-->
-        <!--                prefWidth="100" text="保存配置" GridPane.columnIndex="4" GridPane.columnSpan="1" GridPane.halignment="RIGHT"-->
-        <!--                GridPane.rowIndex="8" GridPane.rowSpan="1">-->
-        <!--            <GridPane.margin>-->
-        <!--                <Insets bottom="20" left="0" right="0" top="20"/>-->
-        <!--            </GridPane.margin>-->
-        <!--        </Button>-->
+        <VBox prefHeight="53.0" spacing="10.0" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="2" GridPane.columnSpan="3"
+                      GridPane.rowIndex="8">
+                    <children>
+                        <CheckBox fx:id="offsetLimitCheckBox" minWidth="100.0" mnemonicParsing="false" selected="false"
+                                  text="分页" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
+                        <CheckBox fx:id="commentCheckBox" mnemonicParsing="false" selected="false"
+                                  text="生成实体域注释(来自表注释)"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <CheckBox fx:id="needToStringHashcodeEquals" mnemonicParsing="false" selected="false"
+                                  text="生成toString/hashCode/equals方法"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
+                    <children>
+                        <CheckBox fx:id="annotationCheckBox" mnemonicParsing="false" selected="false" text="生成JPA注解"/>
+                        <CheckBox fx:id="useActualColumnNamesCheckbox" mnemonicParsing="false" selected="true"
+                                  text="使用实际的列名"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0" spacing="18.0">
+                    <children>
+                        <CheckBox mnemonicParsing="false" selected="false" text="XML以及Mapper"
+                                  fx:id="xmlWithMapperCheckBox"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets left="5.0"/>
+            </padding>
+        </VBox>
+        <Button fx:id="submitButton" defaultButton="true" onAction="#handleSubmitButtonAction" prefHeight="27"
+                prefWidth="100" text="保存配置" GridPane.columnIndex="4" GridPane.columnSpan="1" GridPane.halignment="RIGHT"
+                GridPane.rowIndex="8" GridPane.rowSpan="1">
+            <GridPane.margin>
+                <Insets bottom="20" left="0" right="0" top="20"/>
+            </GridPane.margin>
+        </Button>
+        <Button fx:id="Entry" prefHeight="27"
+                prefWidth="100" text="保存配置" GridPane.columnIndex="4" GridPane.columnSpan="1" GridPane.halignment="RIGHT"
+                GridPane.rowIndex="8" GridPane.rowSpan="1"
+                style="-fx-background-color: #3A84C3; -fx-background-radius: 0;"
+                textFill="WHITE" onAction="#handleSubmitButtonAction">
+            <font>
+                <Font name="System Bold" size="14.0"/>
+            </font>
+            <graphic>
+                <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="/icons/save.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
     </children>
 </GridPane>

@@ -6,29 +6,42 @@ import java.util.Objects;
  * Created by Owen on 5/13/16.
  */
 public class DatabaseConfig {
-
-	/**
-	 * The primary key in the sqlite db
-	 */
-	private Integer id;
-
-	private String dbType;
-	/**
-	 * The name of the config
-	 */
-	private String name;
-
-	private String host;
-
-	private String port;
-
-	private String schema;
-
-	private String username;
-
-	private String password;
-
-	private String encoding;
+    /**
+     * 主键
+     */
+    private Integer id;
+    /**
+     * 数据库类型
+     */
+    private String dbType;
+    /**
+     * 配置名称
+     */
+    private String name;
+    /**
+     * 主机
+     */
+    private String host;
+    /**
+     * 端口
+     */
+    private String port;
+    /**
+     * 结构或者数据库或者SID或者ServiceName
+     */
+    private String schema;
+    /**
+     * 用户名称
+     */
+    private String username;
+    /**
+     * 密码
+     */
+    private String password;
+    /**
+     * 编码
+     */
+    private String encoding;
 
 	public Integer getId() {
 		return id;
