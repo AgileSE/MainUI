@@ -3,7 +3,7 @@ mybatis-generator-gui
 
 mybatis-generator-gui是基于[mybatis generator](http://www.mybatis.org/generator/index.html)开发一款界面工具, 本工具可以使你非常容易及快速生成Mybatis的Java POJO文件及数据库Mapping文件。
 
-![MainUI](https://cloud.githubusercontent.com/assets/3505708/22870467/834ed1c2-f1e2-11e6-9ae5-650b88722a7c.png)
+![MainUI](./assets/shortScreen.png)
 
 ### 注意事项
 * 0.8.3版本请删除版本之前版本config目录下的sqlite3.db文件，重新`mvn install`安装
@@ -26,8 +26,8 @@ mybatis-generator-gui是基于[mybatis generator](http://www.mybatis.org/generat
 * 方法一: 自助构建
 
 ```bash
-    git clone https://github.com/astarring/mybatis-generator-gui
-    cd mybatis-generator-gui
+    git clone https://github.com/hornetbillow/MainUI.git
+    cd MainUI
     mvn jfx:jar
     cd target/jfx/app/
     java -jar mybatis-generator-gui.jar
@@ -40,7 +40,7 @@ Eclipse or IntelliJ IDEA中启动, 找到```com.zzg.mybatis.generator.MainUI```�
 
 ### 文档
 更多详细文档请参考本库的Wiki
-* [Usage](https://github.com/astarring/mybatis-generator-gui/wiki/Usage-Guide)
+* [Usage](https://github.com/hornetbillow/MainUI/wiki)
 
 
 ### 贡献
@@ -51,7 +51,7 @@ Eclipse or IntelliJ IDEA中启动, 找到```com.zzg.mybatis.generator.MainUI```�
     * 如果有任何的错误截图会更好
     
 ### QQ群
-鉴于有的同学可能有一些特殊情况不能使用，我建了一个QQ群供大家交流。QQ群号：613911142
+鉴于有的同学可能有一些特殊情况不能使用，我建了一个QQ群供大家交流。QQ群号：
 
 - - -
 Licensed under the Apache 2.0 License
