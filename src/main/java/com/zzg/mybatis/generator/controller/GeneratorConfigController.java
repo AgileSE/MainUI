@@ -5,22 +5,21 @@ import com.zzg.mybatis.generator.util.ConfigHelper;
 import com.zzg.mybatis.generator.view.AlertUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.stage.DirectoryChooser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 /**
  * 管理GeneratorConfig的Controller
- *
+ * <p>
  * Created by Owen on 8/21/16.
  */
 public class GeneratorConfigController extends BaseFXController {
@@ -33,6 +32,17 @@ public class GeneratorConfigController extends BaseFXController {
     private TableColumn nameColumn;
     @FXML
     private TableColumn opsColumn;
+    @FXML
+    private TextField txtProjectDirectory;
+
+    @FXML
+    public void chooseProjectFolder() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedFolder = directoryChooser.showDialog(getPrimaryStage());
+        if (selectedFolder != null) {
+            this.txtProjectDirectory.setText(selectedFolder.getAbsolutePath());
+        }
+    }
 
     private MainUIController mainUIController;
 
